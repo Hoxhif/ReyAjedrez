@@ -17,7 +17,7 @@ public class Consola {
         System.out.println("                4- Salir");
     }
 
-    public static void elegirOpcion(){
+    public static int elegirOpcion(){
         int opcion;
         do{
             mostrarMenu();
@@ -25,6 +25,7 @@ public class Consola {
             if(opcion<1 || opcion>4)
                 System.out.println("No ha seleccionado una opción válida");
         }while (opcion<1 || opcion>4);
+        return opcion;
     }
 
 }
