@@ -17,7 +17,7 @@ public class Consola {
         System.out.println("                4- Salir");
     }
 
-    public static int elegirOpcion(){
+    public static int elegirOpcionMenu(){
         int opcion;
         do{
             mostrarMenu();
@@ -27,5 +27,7 @@ public class Consola {
         }while (opcion<1 || opcion>4);
         return opcion;
     }
+
+
 
 }
