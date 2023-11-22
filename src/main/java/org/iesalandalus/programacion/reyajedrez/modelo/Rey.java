@@ -150,7 +150,7 @@ public class Rey {
     // Comprobación de que se puede hacer el enroque corto o largo:
     private void comprobarEnroque(){
         if(totalMovimientos!=0)
-            throw new IllegalArgumentException("No se puede realizar este movimiento");
+            throw new IllegalArgumentException("No se puede realizar el enroque después de moverse.");
     }
 
 
