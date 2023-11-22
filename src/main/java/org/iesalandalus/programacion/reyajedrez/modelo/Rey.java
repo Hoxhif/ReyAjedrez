@@ -153,5 +153,11 @@ public class Rey {
             throw new IllegalArgumentException("No se puede realizar el enroque después de moverse.");
     }
 
-
+    @Override
+    public String toString() {
+        return "Rey{" +
+                "color=" + color +
+                ", posicion=" + posicion +
+                '}';
+    }
 }
