@@ -133,7 +133,7 @@ public class Rey {
                         setPosicion(new Posicion(posicion.getFila(), (char) (posicion.getColumna() + 2)));
                 }catch(IllegalArgumentException e){
                     /* Aquí el test me esta todo el rato dando el mismo error de mensaje en la excepción, no entiendo muy bien porqué */
-                    throw new OperationNotSupportedException("ERROR: El rey no está en su posición inicial.");
+                    throw new OperationNotSupportedException("ERROR: El rey ya se ha movido antes.");
                 }
                 break;
             case ENROQUE_LARGO:
@@ -142,7 +142,7 @@ public class Rey {
                         comprobarEnroque();
                         setPosicion(new Posicion(posicion.getFila(), (char) (posicion.getColumna() - 2)));
                 }catch(IllegalArgumentException e){
-                    throw new OperationNotSupportedException("ERROR: El rey no está en su posición inicial.");
+                    throw new OperationNotSupportedException("ERROR: El rey ya se ha movido antes.");
                 }
                 break;
         }
@@ -152,7 +152,7 @@ public class Rey {
     // Comprobación de que se puede hacer el enroque corto o largo:
     private void comprobarEnroque() throws OperationNotSupportedException{
         if(totalMovimientos!=0)
-            throw new OperationNotSupportedException("ERROR: El rey ya se ha movido antes.");
+            throw new OperationNotSupportedException("ERROR: El rey no está en su posición inicial.");
     }
 
     @Override
