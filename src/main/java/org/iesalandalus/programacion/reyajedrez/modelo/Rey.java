@@ -6,6 +6,16 @@ public class Rey {
     private  Color color;
     private Posicion posicion;
 
+    // En el constructor por defecto, como nos dice el enunciado, debera ser un
+    /* Rey blanco que se encuentra en la posicion fila 1 columna e
+    * entonces, para el color no hay problema, pero para la posicion
+    * deberemos crear dentro del constructor un objeto de tipo Posicion que
+    * nos permita establecer esos valores por defecto. */
+    public Rey(){
+        setColor(Color.BLANCO);
+        setPosicion(new Posicion(1, 'e'));
+    }
+
     public Color getColor() {
         return color;
     }
