@@ -98,5 +98,10 @@ public class Consola {
                 return Direccion.NORTE;
         }
     }
+
+    public static void despedirse(){
+        System.out.println("Fin del programa.");
+    }
+
 }
 
