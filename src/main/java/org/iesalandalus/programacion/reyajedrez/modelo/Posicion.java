@@ -19,7 +19,7 @@ public class Posicion {
     // En el constructor copia debemos añadir una excepcción en caso de que se copie un objeto de tipo Posicion nulo.
     public Posicion (Posicion posicion){
         if(posicion == null)
-            throw new NullPointerException("Error: La copia del objeto posición no puede ser Nula");
+            throw new NullPointerException("ERROR: No es posible copiar una posición nula.");
         setFila(posicion.getFila());
         setColumna(posicion.getColumna());
     }
@@ -32,7 +32,7 @@ public class Posicion {
     // Excepcion no controlada IllegalArgumentException, no se pone en el método el throws.
     private void setFila(int fila) {
         if (fila<1 || fila>8)
-            throw new IllegalArgumentException("Error: No se puede poner una fila menor que 0 o mayor que 8");
+            throw new IllegalArgumentException("ERROR: Fila no válida.");
         this.fila = fila;
     }
 
@@ -44,7 +44,7 @@ public class Posicion {
         if(columna>='a' && columna<='h')
             this.columna = columna;
         else
-            throw new IllegalArgumentException("Error: las columnas solo van desde la a a la h");
+            throw new IllegalArgumentException("ERROR: Columna no válida.");
     }
 
     @Override
@@ -63,6 +63,6 @@ public class Posicion {
     // Aquí he modificado un poco el aspecto de el toString que aparecerá luego.
     @Override
     public String toString() {
-        return "FILA= " + fila+" / COLUMNA= "+columna;
+        return "fila="+fila+", columna="+columna;
     }
 }
