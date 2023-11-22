@@ -9,6 +9,12 @@ public enum Color {
     // en el enum, los atributos son final porque tenemos constantes.
     private final String cadenaAMostrar;
 
+    // El constructor en el enum es privado tambien.
+    private Color(String cadenaAMostrar){
+        this.cadenaAMostrar=cadenaAMostrar;
+    }
+
+
 
 
 }
