@@ -1,8 +1,10 @@
 package org.iesalandalus.programacion.reyajedrez.modelo;
 
+import javax.naming.OperationNotSupportedException;
+
 public class Rey {
 
-    private int totalMovimientos;
+    private int totalMovimientos=0;
     private  Color color;
     private Posicion posicion;
 
@@ -54,6 +56,102 @@ public class Rey {
         this.posicion = posicion;
     }
 
+    public void mover(Direccion direccion) throws OperationNotSupportedException{
+        if (direccion == null)
+            throw new NullPointerException("Error: la dirección no puede ser Nula.");
+        switch (direccion){
+            case NORTE:
+                try {
+                    setPosicion(new Posicion(posicion.getFila() + 1, posicion.getColumna()));
+                    totalMovimientos++;
+                }catch(IllegalArgumentException e){
+                    throw new OperationNotSupportedException("No se puede realizar ese movimiento");
+                }
+                break;
+            case SUR:
+                try {
+                    setPosicion(new Posicion(posicion.getFila() - 1, posicion.getColumna()));
+                    totalMovimientos++;
+                }catch(IllegalArgumentException e){
+                    throw new OperationNotSupportedException("No se puede realizar ese movimiento");
+                }
+                break;
+            case ESTE:
+                try {
+                    setPosicion(new Posicion(posicion.getFila(), (char) (posicion.getColumna() + 1)));
+                    totalMovimientos++;
+                }catch(IllegalArgumentException e){
+                    throw new OperationNotSupportedException("No se puede realizar ese movimiento");
+                }
+                break;
+            case OESTE:
+                try {
+                    setPosicion(new Posicion(posicion.getFila(), (char) (posicion.getColumna() - 1)));
+                    totalMovimientos++;
+                }catch(IllegalArgumentException e){
+                    throw new OperationNotSupportedException("No se puede realizar ese movimiento");
+                }
+                break;
+            case NORESTE:
+                try {
+                    setPosicion(new Posicion(posicion.getFila() + 1, (char) (posicion.getColumna() + 1)));
+                    totalMovimientos++;
+                }catch(IllegalArgumentException e){
+                    throw new OperationNotSupportedException("No se puede realizar ese movimiento");
+                }
+                break;
+            case NOROESTE:
+                try {
+                    setPosicion(new Posicion(posicion.getFila() + 1, (char) (posicion.getColumna() - 1)));
+                    totalMovimientos++;
+                }catch(IllegalArgumentException e){
+                    throw new OperationNotSupportedException("No se puede realizar ese movimiento");
+                }
+                break;
+            case SURESTE:
+                try {
+                    setPosicion(new Posicion(posicion.getFila() - 1, (char) (posicion.getColumna() + 1)));
+                    totalMovimientos++;
+                }catch(IllegalArgumentException e){
+                    throw new OperationNotSupportedException("No se puede realizar ese movimiento");
+                }
+                break;
+            case SUROESTE:
+                try {
+                    setPosicion(new Posicion(posicion.getFila() - 1, (char) (posicion.getColumna() - 1)));
+                    totalMovimientos++;
+                }catch(IllegalArgumentException e){
+                    throw new OperationNotSupportedException("No se puede realizar ese movimiento");
+                }
+                break;
+            case ENROQUE_CORTO:
+                try {
+                    /* Esto es porque en el enroque corto, lo que hace es irse hacia el este 2 pasos. */
+                    // Llamada al comprobar enroque si se puede o no.
+                        comprobarEnroque();
+                        setPosicion(new Posicion(posicion.getFila(), (char) (posicion.getColumna() + 2)));
+                }catch(IllegalArgumentException e){
+                    throw new OperationNotSupportedException("No se puede relizar ese movimiento");
+                }
+                break;
+            case ENROQUE_LARGO:
+                try {
+                    // Llamada al comprobar enroque si se puede o no.
+                        comprobarEnroque();
+                        setPosicion(new Posicion(posicion.getFila(), (char) (posicion.getColumna() - 2)));
+                }catch(IllegalArgumentException e){
+                    throw new OperationNotSupportedException("No se puede realizar ese movimiento");
+                }
+                break;
+        }
+
+    }
+
+    // Comprobación de que se puede hacer el enroque corto o largo:
+    private void comprobarEnroque(){
+        if(totalMovimientos!=0)
+            throw new IllegalArgumentException("No se puede realizar este movimiento");
+    }
 
 
 }
