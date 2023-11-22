@@ -37,9 +37,10 @@ public class Rey {
     // Aunque creo que no hace falta porque en el enumerado solo hay esas dos opciones
     private void setColor(Color color) {
         if(color == null)
-            throw new NullPointerException("El color no puede ser nulo");
+            throw new NullPointerException("ERROR: El color no puede ser nulo.");
+        /*
         if (color != Color.BLANCO || color != Color.NEGRO)
-            throw new IllegalArgumentException("El color no puede ser diferente de Blanco o Negro");
+            throw new IllegalArgumentException("El color no puede ser diferente de Blanco o Negro"); */
         this.color = color;
     }
 
@@ -58,14 +59,14 @@ public class Rey {
 
     public void mover(Direccion direccion) throws OperationNotSupportedException{
         if (direccion == null)
-            throw new NullPointerException("Error: la dirección no puede ser Nula.");
+            throw new NullPointerException("ERROR: La dirección no puede ser nula.");
         switch (direccion){
             case NORTE:
                 try {
                     setPosicion(new Posicion(posicion.getFila() + 1, posicion.getColumna()));
                     totalMovimientos++;
                 }catch(IllegalArgumentException e){
-                    throw new OperationNotSupportedException("No se puede realizar ese movimiento");
+                    throw new OperationNotSupportedException("ERROR: Movimiento no válido (se sale del tablero).");
                 }
                 break;
             case SUR:
@@ -73,7 +74,7 @@ public class Rey {
                     setPosicion(new Posicion(posicion.getFila() - 1, posicion.getColumna()));
                     totalMovimientos++;
                 }catch(IllegalArgumentException e){
-                    throw new OperationNotSupportedException("No se puede realizar ese movimiento");
+                    throw new OperationNotSupportedException("ERROR: Movimiento no válido (se sale del tablero).");
                 }
                 break;
             case ESTE:
@@ -81,7 +82,7 @@ public class Rey {
                     setPosicion(new Posicion(posicion.getFila(), (char) (posicion.getColumna() + 1)));
                     totalMovimientos++;
                 }catch(IllegalArgumentException e){
-                    throw new OperationNotSupportedException("No se puede realizar ese movimiento");
+                    throw new OperationNotSupportedException("ERROR: Movimiento no válido (se sale del tablero).");
                 }
                 break;
             case OESTE:
@@ -89,7 +90,7 @@ public class Rey {
                     setPosicion(new Posicion(posicion.getFila(), (char) (posicion.getColumna() - 1)));
                     totalMovimientos++;
                 }catch(IllegalArgumentException e){
-                    throw new OperationNotSupportedException("No se puede realizar ese movimiento");
+                    throw new OperationNotSupportedException("ERROR: Movimiento no válido (se sale del tablero).");
                 }
                 break;
             case NORESTE:
@@ -97,7 +98,7 @@ public class Rey {
                     setPosicion(new Posicion(posicion.getFila() + 1, (char) (posicion.getColumna() + 1)));
                     totalMovimientos++;
                 }catch(IllegalArgumentException e){
-                    throw new OperationNotSupportedException("No se puede realizar ese movimiento");
+                    throw new OperationNotSupportedException("ERROR: Movimiento no válido (se sale del tablero).");
                 }
                 break;
             case NOROESTE:
@@ -105,7 +106,7 @@ public class Rey {
                     setPosicion(new Posicion(posicion.getFila() + 1, (char) (posicion.getColumna() - 1)));
                     totalMovimientos++;
                 }catch(IllegalArgumentException e){
-                    throw new OperationNotSupportedException("No se puede realizar ese movimiento");
+                    throw new OperationNotSupportedException("ERROR: Movimiento no válido (se sale del tablero).");
                 }
                 break;
             case SURESTE:
@@ -113,7 +114,7 @@ public class Rey {
                     setPosicion(new Posicion(posicion.getFila() - 1, (char) (posicion.getColumna() + 1)));
                     totalMovimientos++;
                 }catch(IllegalArgumentException e){
-                    throw new OperationNotSupportedException("No se puede realizar ese movimiento");
+                    throw new OperationNotSupportedException("ERROR: Movimiento no válido (se sale del tablero).");
                 }
                 break;
             case SUROESTE:
@@ -121,7 +122,7 @@ public class Rey {
                     setPosicion(new Posicion(posicion.getFila() - 1, (char) (posicion.getColumna() - 1)));
                     totalMovimientos++;
                 }catch(IllegalArgumentException e){
-                    throw new OperationNotSupportedException("No se puede realizar ese movimiento");
+                    throw new OperationNotSupportedException("ERROR: Movimiento no válido (se sale del tablero).");
                 }
                 break;
             case ENROQUE_CORTO:
@@ -131,7 +132,8 @@ public class Rey {
                         comprobarEnroque();
                         setPosicion(new Posicion(posicion.getFila(), (char) (posicion.getColumna() + 2)));
                 }catch(IllegalArgumentException e){
-                    throw new OperationNotSupportedException("No se puede relizar ese movimiento");
+                    /* Aquí el test me esta todo el rato dando el mismo error de mensaje en la excepción, no entiendo muy bien porqué */
+                    throw new OperationNotSupportedException("ERROR: El rey ya se ha movido antes.");
                 }
                 break;
             case ENROQUE_LARGO:
@@ -140,7 +142,7 @@ public class Rey {
                         comprobarEnroque();
                         setPosicion(new Posicion(posicion.getFila(), (char) (posicion.getColumna() - 2)));
                 }catch(IllegalArgumentException e){
-                    throw new OperationNotSupportedException("No se puede realizar ese movimiento");
+                    throw new OperationNotSupportedException("ERROR: El rey ya se ha movido antes.");
                 }
                 break;
         }
@@ -155,9 +157,6 @@ public class Rey {
 
     @Override
     public String toString() {
-        return "Rey{" +
-                "color=" + color +
-                ", posicion=" + posicion +
-                '}';
+        return "color="+color+", posicion=(fila="+(posicion.getFila())+", columna="+posicion.getColumna()+")";
     }
 }
