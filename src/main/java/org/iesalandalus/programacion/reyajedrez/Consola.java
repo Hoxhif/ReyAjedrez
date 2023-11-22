@@ -41,6 +41,21 @@ public class Consola {
         else return Color.BLANCO;
     }
 
+    public static void mostrarMenuDirecciones(){
+        System.out.println("---------Selecciona una opción--------");
+        System.out.println("              1- NORTE");
+        System.out.println("               1- SUR");
+        System.out.println("              3- ESTE");
+        System.out.println("              4- OESTE");
+        System.out.println("              5- NORESTE");
+        System.out.println("              6- NOROESTE");
+        System.out.println("              7- SURESTE");
+        System.out.println("              8- SUROESTE");
+        System.out.println("              9- ENROQUE CORTO");
+        System.out.println("              9- ENROQUE LARGO");
+
+    }
+
 
 
 }
