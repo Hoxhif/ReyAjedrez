@@ -14,6 +14,13 @@ public class Posicion {
         setColumna(columna);
     }
 
+    // En el constructor copia debemos añadir una excepcción en caso de que se copie un objeto de tipo Posicion nulo.
+    public Posicion (Posicion posicion){
+        if(posicion == null)
+            throw new NullPointerException("Error: La copia del objeto posición no puede ser Nula");
+        setFila(posicion.getFila());
+        setColumna(posicion.getColumna());
+    }
 
 
     public int getFila() {
