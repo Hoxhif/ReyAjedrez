@@ -5,6 +5,10 @@ public enum Color {
 
     NEGRO="Negro";
 
+    // Declaramos el atributo de tipo String para que se muestren los valores, debe ser privado por que es un atributo.
+    // en el enum, los atributos son final porque tenemos constantes.
+    private final String cadenaAMostrar;
+
 
 
 }
