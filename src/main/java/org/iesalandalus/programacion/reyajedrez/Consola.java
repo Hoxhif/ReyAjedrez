@@ -29,7 +29,7 @@ public class Consola {
         return opcion;
     }
 
-    public static Color elegirOpcion(Color color) {
+    public static Color elegirOpcion() {
         int opcionColor;
         do {
             System.out.println("Elige el color: ");
@@ -37,9 +37,12 @@ public class Consola {
             System.out.println("2. Color Blanco");
             opcionColor = Entrada.entero();
         } while (opcionColor < 1 || opcionColor > 2);
-        if (opcionColor == 1)
+        if (opcionColor == 1){
             return Color.NEGRO;
-        else return Color.BLANCO;
+        }
+        else{
+            return Color.BLANCO;
+        }
     }
 
     public static void mostrarMenuDirecciones() {
