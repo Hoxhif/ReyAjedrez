@@ -16,8 +16,7 @@ public class MainApp {
             case 1:
                 crearReyDefecto();
             case 2:
-                // Aqui me daba un error, tuve que ir a consola y modificar el método de la opcion de menu y quitar el parametro que tenia.
-                rey = new Rey(Consola.elegirOpcion());
+                crearReyColor();
             case 3:
                 try {
                     rey.mover(Consola.elegirDireccion());
@@ -35,4 +34,10 @@ public class MainApp {
         rey = new Rey();
         System.out.println(rey);
     }
+
+    private static void crearReyColor(){
+        // Aqui me daba un error, tuve que ir a consola y modificar el método de la opcion de menu y quitar el parametro que tenia.
+        rey = new Rey(Consola.elegirOpcion());
+    }
+
 }
