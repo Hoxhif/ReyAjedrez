@@ -46,4 +46,13 @@ public class MainApp {
         }
     }
 
+    private static void mostrarRey(){
+
+        // Como quiere que indiquemos que si no esta creado aun nos avise, lanzamos excepcion.
+        if (rey == null)
+            throw new NullPointerException("El rey no esta creado");
+        System.out.println(rey);
+
+    }
+
 }
