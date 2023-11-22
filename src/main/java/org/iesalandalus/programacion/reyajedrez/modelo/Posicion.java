@@ -6,6 +6,16 @@ public class Posicion {
     private char columna;
 
 
+    /* Como ya en el setter de fila y columna he puesto las excepciones,
+    * ya en el constructor con parametros llamo a el setter y directamente le asocio el parametro fila y columna
+    * y ya el setter internamente controla la excepcion. */
+    public Posicion(int fila, char columna){
+        setFila(fila);
+        setColumna(columna);
+    }
+
+
+
     public int getFila() {
         return fila;
     }
