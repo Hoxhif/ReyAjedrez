@@ -7,6 +7,13 @@ import javax.naming.OperationNotSupportedException;
 public class MainApp {
     public static void main(String[] args) {
         // No podemos poner los métodos dentro del método main porque nos da errores.
+        int opcion;
+
+        do{
+            //aqui me daba error por lo que tuve que cambiar los parametros del metodo elegirOpcionMenu en la consola.
+            opcion = Consola.elegirOpcionMenu();
+            ejecutarOpcion(opcion);
+        }while(opcion != 4);
     }
 
     private static Rey rey;
@@ -28,7 +35,7 @@ public class MainApp {
 
     private static void crearReyDefecto(){
         rey = new Rey();
-        System.out.println(rey);
+        mostrarRey();
     }
 
     private static void crearReyColor(){
@@ -40,7 +47,7 @@ public class MainApp {
         try {
             rey.mover(Consola.elegirDireccion());
             // Hacemos un sout de rey para que se muestre de nuevo la posicion y demás.
-            System.out.println(rey);
+            mostrarRey();
         }catch (OperationNotSupportedException e){
             System.out.println(e.getMessage());
         }
@@ -54,5 +61,7 @@ public class MainApp {
         System.out.println(rey);
 
     }
+
+
 
 }

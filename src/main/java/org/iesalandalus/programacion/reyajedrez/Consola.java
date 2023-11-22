@@ -19,7 +19,8 @@ public class Consola {
         System.out.println("                4- Salir");
     }
 
-    public static int elegirOpcionMenu(int opcion) {
+    public static int elegirOpcionMenu() {
+        int opcion;
         do {
             mostrarMenu();
             opcion = Entrada.entero();
