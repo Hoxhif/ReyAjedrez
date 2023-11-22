@@ -60,5 +60,9 @@ public class Posicion {
         return Objects.hash(fila, columna);
     }
 
-
+    // Aquí he modificado un poco el aspecto de el toString que aparecerá luego.
+    @Override
+    public String toString() {
+        return "FILA= " + fila+" / COLUMNA= "+columna;
+    }
 }
