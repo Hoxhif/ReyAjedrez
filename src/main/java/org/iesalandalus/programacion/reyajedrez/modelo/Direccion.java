@@ -12,5 +12,4 @@ public enum Direccion {
     ENROQUE_CORTO,
     ENROQUE_LARGO;
 
-
 }
