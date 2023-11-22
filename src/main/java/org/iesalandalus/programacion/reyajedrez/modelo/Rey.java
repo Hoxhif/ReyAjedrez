@@ -16,6 +16,17 @@ public class Rey {
         setPosicion(new Posicion(1, 'e'));
     }
 
+    /* Constructor con parametros que dependiendo de el color, tendrá una posicion u otra.
+    * Aqui básicamente lo que hemos hecho es decirle que se ponga como color el que le digamos
+    * y entonces, dependiendo del color elegido, tomara una posicion u otra.*/
+
+    public Rey(Color color){
+        setColor(color);
+        if (color == Color.BLANCO)
+            setPosicion(new Posicion(1,'e'));
+        else setPosicion(new Posicion(8,'e'));
+    }
+
     public Color getColor() {
         return color;
     }
