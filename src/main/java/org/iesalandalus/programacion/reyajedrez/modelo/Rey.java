@@ -21,6 +21,7 @@ public class Rey {
     public Rey() throws OperationNotSupportedException{
         try {
             setColor(Color.BLANCO);
+            Rey reyBlanco = new Rey(Color.BLANCO);
             setPosicion(new Posicion(1, 'e'));
         }catch (IllegalArgumentException | OperationNotSupportedException e){
             throw new OperationNotSupportedException(e.getMessage());
@@ -32,11 +33,18 @@ public class Rey {
     * y entonces, dependiendo del color elegido, tomara una posicion u otra.*/
 
     public Rey(Color color) throws OperationNotSupportedException{
+
         try {
+
             setColor(color);
-            if (color == Color.BLANCO)
+            if (color == Color.BLANCO) {
+                Rey reyBlanco = new Rey(Color.BLANCO);
                 setPosicion(new Posicion(1, 'e'));
-            else setPosicion(new Posicion(8, 'e'));
+            }
+            else{
+                Rey reNegro = new Rey(Color.NEGRO);
+                setPosicion(new Posicion(8, 'e'));
+            }
         }catch(IllegalArgumentException | OperationNotSupportedException e){
             throw new OperationNotSupportedException(e.getMessage());
         }
@@ -172,9 +180,9 @@ public class Rey {
 
     // Comprobación de que se puede hacer el enroque corto o largo:
     private void comprobarEnroque() throws OperationNotSupportedException{
-        if(reyBlanco.totalMovimientos!=0 || reyNegro.totalMovimientos!=0)
+        if(this.reyBlanco.totalMovimientos!=0 || this.reyNegro.totalMovimientos!=0)
             throw new OperationNotSupportedException("ERROR: El rey ya se ha movido antes.");
-        else if(reyBlanco.totalMovimientos>0 || reyNegro.totalMovimientos>0)
+        else if(this.reyBlanco.totalMovimientos>0 || this.reyNegro.totalMovimientos>0)
             throw new OperationNotSupportedException("ERROR: El rey no está en su posición inicial.");
     }
 
