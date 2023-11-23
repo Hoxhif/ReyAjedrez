@@ -9,6 +9,10 @@ public class Rey {
     private Posicion posicion;
 
 
+        Rey reyBlanco = new Rey(Color.BLANCO);
+        Rey reyNegro = new Rey(Color.NEGRO);
+
+
     // En el constructor por defecto, como nos dice el enunciado, debera ser un
     /* Rey blanco que se encuentra en la posicion fila 1 columna e
     * entonces, para el color no hay problema, pero para la posicion
@@ -18,7 +22,7 @@ public class Rey {
         try {
             setColor(Color.BLANCO);
             setPosicion(new Posicion(1, 'e'));
-        }catch (OperationNotSupportedException e){
+        }catch (IllegalArgumentException | OperationNotSupportedException e){
             throw new OperationNotSupportedException(e.getMessage());
         }
     }
@@ -33,7 +37,7 @@ public class Rey {
             if (color == Color.BLANCO)
                 setPosicion(new Posicion(1, 'e'));
             else setPosicion(new Posicion(8, 'e'));
-        }catch(OperationNotSupportedException e){
+        }catch(IllegalArgumentException | OperationNotSupportedException e){
             throw new OperationNotSupportedException(e.getMessage());
         }
     }
@@ -73,102 +77,104 @@ public class Rey {
     public void mover(Direccion direccion) throws OperationNotSupportedException{
         if (direccion == null)
             throw new NullPointerException("ERROR: La dirección no puede ser nula.");
-        switch (direccion){
-            case NORTE:
-                try {
-                    setPosicion(new Posicion(posicion.getFila() + 1, posicion.getColumna()));
-                    totalMovimientos++;
-                }catch(IllegalArgumentException e){
-                    throw new OperationNotSupportedException("ERROR: Movimiento no válido (se sale del tablero).");
-                }
-                break;
-            case SUR:
-                try {
-                    setPosicion(new Posicion(posicion.getFila() - 1, posicion.getColumna()));
-                    totalMovimientos++;
-                }catch(IllegalArgumentException e){
-                    throw new OperationNotSupportedException("ERROR: Movimiento no válido (se sale del tablero).");
-                }
-                break;
-            case ESTE:
-                try {
-                    setPosicion(new Posicion(posicion.getFila(), (char) (posicion.getColumna() + 1)));
-                    totalMovimientos++;
-                }catch(IllegalArgumentException e){
-                    throw new OperationNotSupportedException("ERROR: Movimiento no válido (se sale del tablero).");
-                }
-                break;
-            case OESTE:
-                try {
-                    setPosicion(new Posicion(posicion.getFila(), (char) (posicion.getColumna() - 1)));
-                    totalMovimientos++;
-                }catch(IllegalArgumentException e){
-                    throw new OperationNotSupportedException("ERROR: Movimiento no válido (se sale del tablero).");
-                }
-                break;
-            case NORESTE:
-                try {
-                    setPosicion(new Posicion(posicion.getFila() + 1, (char) (posicion.getColumna() + 1)));
-                    totalMovimientos++;
-                }catch(IllegalArgumentException e){
-                    throw new OperationNotSupportedException("ERROR: Movimiento no válido (se sale del tablero).");
-                }
-                break;
-            case NOROESTE:
-                try {
-                    setPosicion(new Posicion(posicion.getFila() + 1, (char) (posicion.getColumna() - 1)));
-                    totalMovimientos++;
-                }catch(IllegalArgumentException e){
-                    throw new OperationNotSupportedException("ERROR: Movimiento no válido (se sale del tablero).");
-                }
-                break;
-            case SURESTE:
-                try {
-                    setPosicion(new Posicion(posicion.getFila() - 1, (char) (posicion.getColumna() + 1)));
-                    totalMovimientos++;
-                }catch(IllegalArgumentException e){
-                    throw new OperationNotSupportedException("ERROR: Movimiento no válido (se sale del tablero).");
-                }
-                break;
-            case SUROESTE:
-                try {
-                    setPosicion(new Posicion(posicion.getFila() - 1, (char) (posicion.getColumna() - 1)));
-                    totalMovimientos++;
-                }catch(IllegalArgumentException e){
-                    throw new OperationNotSupportedException("ERROR: Movimiento no válido (se sale del tablero).");
-                }
-                break;
-            case ENROQUE_CORTO:
-                try {
-                    /* Esto es porque en el enroque corto, lo que hace es irse hacia el este 2 pasos. */
-                    // Llamada al comprobar enroque si se puede o no.
+        try {
+            switch (direccion) {
+                case NORTE:
+                    try {
+                        setPosicion(new Posicion(posicion.getFila() + 1, posicion.getColumna()));
+                        totalMovimientos++;
+                    } catch (IllegalArgumentException e) {
+                        throw new OperationNotSupportedException("ERROR: Movimiento no válido (se sale del tablero).");
+                    }
+                    break;
+                case SUR:
+                    try {
+                        setPosicion(new Posicion(posicion.getFila() - 1, posicion.getColumna()));
+                        totalMovimientos++;
+                    } catch (IllegalArgumentException e) {
+                        throw new OperationNotSupportedException("ERROR: Movimiento no válido (se sale del tablero).");
+                    }
+                    break;
+                case ESTE:
+                    try {
+                        setPosicion(new Posicion(posicion.getFila(), (char) (posicion.getColumna() + 1)));
+                        totalMovimientos++;
+                    } catch (IllegalArgumentException e) {
+                        throw new OperationNotSupportedException("ERROR: Movimiento no válido (se sale del tablero).");
+                    }
+                    break;
+                case OESTE:
+                    try {
+                        setPosicion(new Posicion(posicion.getFila(), (char) (posicion.getColumna() - 1)));
+                        totalMovimientos++;
+                    } catch (IllegalArgumentException e) {
+                        throw new OperationNotSupportedException("ERROR: Movimiento no válido (se sale del tablero).");
+                    }
+                    break;
+                case NORESTE:
+                    try {
+                        setPosicion(new Posicion(posicion.getFila() + 1, (char) (posicion.getColumna() + 1)));
+                        totalMovimientos++;
+                    } catch (IllegalArgumentException e) {
+                        throw new OperationNotSupportedException("ERROR: Movimiento no válido (se sale del tablero).");
+                    }
+                    break;
+                case NOROESTE:
+                    try {
+                        setPosicion(new Posicion(posicion.getFila() + 1, (char) (posicion.getColumna() - 1)));
+                        totalMovimientos++;
+                    } catch (IllegalArgumentException e) {
+                        throw new OperationNotSupportedException("ERROR: Movimiento no válido (se sale del tablero).");
+                    }
+                    break;
+                case SURESTE:
+                    try {
+                        setPosicion(new Posicion(posicion.getFila() - 1, (char) (posicion.getColumna() + 1)));
+                        totalMovimientos++;
+                    } catch (IllegalArgumentException e) {
+                        throw new OperationNotSupportedException("ERROR: Movimiento no válido (se sale del tablero).");
+                    }
+                    break;
+                case SUROESTE:
+                    try {
+                        setPosicion(new Posicion(posicion.getFila() - 1, (char) (posicion.getColumna() - 1)));
+                        totalMovimientos++;
+                    } catch (IllegalArgumentException e) {
+                        throw new OperationNotSupportedException("ERROR: Movimiento no válido (se sale del tablero).");
+                    }
+                    break;
+                case ENROQUE_CORTO:
+                    try {
+                        /* Esto es porque en el enroque corto, lo que hace es irse hacia el este 2 pasos. */
+                        // Llamada al comprobar enroque si se puede o no.
                         comprobarEnroque();
                         setPosicion(new Posicion(posicion.getFila(), (char) (posicion.getColumna() + 2)));
-                }catch(OperationNotSupportedException | IllegalArgumentException e){
-                    /* Aquí el test me esta todo el rato dando el mismo error de mensaje en la excepción, no entiendo muy bien porqué */
-                    throw new OperationNotSupportedException(e.getMessage());
-                }
-                break;
-            case ENROQUE_LARGO:
-                try {
-                    // Llamada al comprobar enroque si se puede o no.
+                    } catch (OperationNotSupportedException | IllegalArgumentException e) {
+                        /* Aquí el test me esta todo el rato dando el mismo error de mensaje en la excepción, no entiendo muy bien porqué */
+                        throw new OperationNotSupportedException(e.getMessage());
+                    }
+                    break;
+                case ENROQUE_LARGO:
+                    try {
+                        // Llamada al comprobar enroque si se puede o no.
                         comprobarEnroque();
                         setPosicion(new Posicion(posicion.getFila(), (char) (posicion.getColumna() - 2)));
-                }catch(OperationNotSupportedException | IllegalArgumentException e){
-                    throw new OperationNotSupportedException(e.getMessage());
-                }
-                break;
+                    } catch (OperationNotSupportedException | IllegalArgumentException e) {
+                        throw new OperationNotSupportedException(e.getMessage());
+                    }
+                    break;
+            }
+        }catch(IllegalArgumentException | OperationNotSupportedException e){
+            System.out.println(e.getMessage());
         }
 
     }
 
     // Comprobación de que se puede hacer el enroque corto o largo:
     private void comprobarEnroque() throws OperationNotSupportedException{
-        Rey reytest1 = new Rey(Color.BLANCO);
-        Rey reytest2 = new Rey(Color.NEGRO);
-        if(reytest1.totalMovimientos!=0 || reytest2.totalMovimientos!=0)
+        if(reyBlanco.totalMovimientos!=0 || reyNegro.totalMovimientos!=0)
             throw new OperationNotSupportedException("ERROR: El rey ya se ha movido antes.");
-        else if(reytest1.totalMovimientos>0 || reytest2.totalMovimientos>0)
+        else if(reyBlanco.totalMovimientos>0 || reyNegro.totalMovimientos>0)
             throw new OperationNotSupportedException("ERROR: El rey no está en su posición inicial.");
     }
 
