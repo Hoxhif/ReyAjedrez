@@ -3,6 +3,7 @@ package org.iesalandalus.programacion.reyajedrez;
 import org.iesalandalus.programacion.reyajedrez.modelo.Rey;
 
 import javax.naming.OperationNotSupportedException;
+import java.sql.SQLOutput;
 
 public class MainApp {
     public static void main(String[] args) {
@@ -34,13 +35,31 @@ public class MainApp {
     }
 
     private static void crearReyDefecto(){
-        rey = new Rey();
-        mostrarRey();
+        boolean creadoCorrectamente=false;
+        do{
+            try {
+                rey = new Rey();
+                mostrarRey();
+                creadoCorrectamente=true;
+            }catch(OperationNotSupportedException e){
+                System.out.println(e.getMessage());
+                }
+        }while(creadoCorrectamente=false);
+
     }
 
     private static void crearReyColor(){
+        boolean creadoCorrectamente=false;
         // Aqui me daba un error, tuve que ir a consola y modificar el método de la opcion de menu y quitar el parametro que tenia.
-        rey = new Rey(Consola.elegirOpcion());
+        do{
+            try{
+                rey = new Rey(Consola.elegirOpcion());
+                creadoCorrectamente=true;
+            }catch (OperationNotSupportedException e){
+                System.out.println(e.getMessage());
+            }
+        }while(creadoCorrectamente=false);
+
     }
 
     private static void mover(){
