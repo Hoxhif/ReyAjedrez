@@ -15,6 +15,16 @@ public class Rey {
     * entonces, para el color no hay problema, pero para la posicion
     * deberemos crear dentro del constructor un objeto de tipo Posicion que
     * nos permita establecer esos valores por defecto. */
+
+
+    /* He tenido un error muy pesado en el test durante mucho tiempo que no sabia solucionar
+    * al final usando chatGPT y haciendo miles de preguntas y haciendo miles de modificaciones
+    * (para luego terminar muy cerca de lo que ya estaba haciendo yo) el problema era que
+    * yo en los metodos de setColor y setPosicion estaba lanzando una excepcion OperationNonSuportedException
+    * y luego en los constructores en el bloque de try catch estaba intentado captar un IllegalArgumentException
+    * y entonces cambie eso, tambien otro problema que tenia es que la manera que tenia de tratar la excepcion era
+    * volviendo a lanzar hacia arriba la excepcion en vez de simplmente añadir un e.getMessage.  */
+
     public Rey() {
         try {
             setColor(Color.BLANCO);

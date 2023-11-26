@@ -14,14 +14,13 @@ public class MainApp {
 
 
         // No tengo ni idea de porque tengo que poner static aqui, pero he estado investigando y poniendolo no me da errores...
-        static {
-        try {
+
+
             reyBlanco = new Rey(Color.BLANCO);
             reyNegro = new Rey(Color.NEGRO);
-        } catch (OperationNotSupportedException | IllegalArgumentException e) {
-            System.out.println(e.getMessage());
-        }
-    }
+
+
+
 
         private static void ejecutarOpcion ( int opcion){
         switch (opcion) {
@@ -48,7 +47,7 @@ public class MainApp {
             } catch (OperationNotSupportedException | IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
-        } while (creadoCorrectamente = false);
+        } while (!creadoCorrectamente);
 
     }
 
@@ -62,7 +61,7 @@ public class MainApp {
             } catch (OperationNotSupportedException | IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
-        } while (creadoCorrectamente = false);
+        } while (!creadoCorrectamente);
 
     }
 
@@ -86,7 +85,7 @@ public class MainApp {
             } catch (OperationNotSupportedException e) {
                 System.out.println(e.getMessage());
             }
-        } while (movimientoCorrecto = false);
+        } while (!movimientoCorrecto);
     }
 
         private static void mostrarRey () {
