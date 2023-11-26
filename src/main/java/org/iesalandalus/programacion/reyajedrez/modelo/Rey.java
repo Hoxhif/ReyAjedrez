@@ -9,29 +9,27 @@ public class Rey {
     private Posicion posicion;
 
 
-        Rey reyBlanco;
-        Rey reyNegro;
-
 
     // En el constructor por defecto, como nos dice el enunciado, debera ser un
     /* Rey blanco que se encuentra en la posicion fila 1 columna e
     * entonces, para el color no hay problema, pero para la posicion
     * deberemos crear dentro del constructor un objeto de tipo Posicion que
     * nos permita establecer esos valores por defecto. */
-    public Rey() throws OperationNotSupportedException {
+    public Rey() {
         try {
             setColor(Color.BLANCO);
             setPosicion(new Posicion(1, 'e'));
             this.totalMovimientos= 0;
-        }catch (IllegalArgumentException e){
-            throw new OperationNotSupportedException(e.getMessage());        }
+        }catch (OperationNotSupportedException e){
+            System.out.println(e.getMessage());
+        }
     }
 
     /* Constructor con parametros que dependiendo de el color, tendrá una posicion u otra.
     * Aqui básicamente lo que hemos hecho es decirle que se ponga como color el que le digamos
     * y entonces, dependiendo del color elegido, tomara una posicion u otra.*/
 
-    public Rey(Color color) throws OperationNotSupportedException{
+    public Rey(Color color) {
 
         try {
 
@@ -39,12 +37,12 @@ public class Rey {
             if (color == Color.BLANCO) {
                 setPosicion(new Posicion(1, 'e'));
             }
-            else{
+            else if(color == Color.NEGRO){
                 setPosicion(new Posicion(8, 'e'));
             }
             this.totalMovimientos=0;
-        }catch(IllegalArgumentException e){
-            throw new OperationNotSupportedException(e.getMessage());
+        }catch(OperationNotSupportedException e){
+            System.out.println(e.getMessage());
         }
     }
 
@@ -190,6 +188,7 @@ public class Rey {
 
     @Override
     public String toString() {
+
         return "color="+color+", posicion=(fila="+(posicion.getFila())+", columna="+posicion.getColumna()+")";
     }
 }

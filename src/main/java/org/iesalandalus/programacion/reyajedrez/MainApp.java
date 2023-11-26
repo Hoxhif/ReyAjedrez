@@ -8,18 +8,10 @@ import java.sql.SQLOutput;
 
 public class MainApp {
 
-        public static void main (String[]args){
-        // No podemos poner los métodos dentro del método main porque nos da errores.
-        int opcion;
 
-        do {
-            //aqui me daba error por lo que tuve que cambiar los parametros del metodo elegirOpcionMenu en la consola.
-            opcion = Consola.elegirOpcionMenu();
-            ejecutarOpcion(opcion);
-        } while (opcion != 4);
-    }
         private static Rey reyBlanco;
         private static Rey reyNegro;
+
 
         // No tengo ni idea de porque tengo que poner static aqui, pero he estado investigando y poniendolo no me da errores...
         static {
@@ -106,6 +98,17 @@ public class MainApp {
         System.out.println(reyBlanco);
         System.out.println(reyNegro);
 
+    }
+
+    public static void main (String[]args){
+        // No podemos poner los métodos dentro del método main porque nos da errores.
+        int opcion;
+
+        do {
+            //aqui me daba error por lo que tuve que cambiar los parametros del metodo elegirOpcionMenu en la consola.
+            opcion = Consola.elegirOpcionMenu();
+            ejecutarOpcion(opcion);
+        } while (opcion != 4);
     }
 
 
