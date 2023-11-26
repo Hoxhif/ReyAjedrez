@@ -9,8 +9,8 @@ public class Rey {
     private Posicion posicion;
 
 
-        Rey reyBlanco = new Rey(Color.BLANCO);
-        Rey reyNegro = new Rey(Color.NEGRO);
+        Rey reyBlanco;
+        Rey reyNegro;
 
 
     // En el constructor por defecto, como nos dice el enunciado, debera ser un
@@ -18,14 +18,13 @@ public class Rey {
     * entonces, para el color no hay problema, pero para la posicion
     * deberemos crear dentro del constructor un objeto de tipo Posicion que
     * nos permita establecer esos valores por defecto. */
-    public Rey() throws OperationNotSupportedException{
+    public Rey() throws OperationNotSupportedException {
         try {
             setColor(Color.BLANCO);
-            Rey reyBlanco = new Rey(Color.BLANCO);
             setPosicion(new Posicion(1, 'e'));
-        }catch (IllegalArgumentException | OperationNotSupportedException e){
-            throw new OperationNotSupportedException(e.getMessage());
-        }
+            this.totalMovimientos= 0;
+        }catch (IllegalArgumentException e){
+            throw new OperationNotSupportedException(e.getMessage());        }
     }
 
     /* Constructor con parametros que dependiendo de el color, tendrá una posicion u otra.
@@ -38,14 +37,13 @@ public class Rey {
 
             setColor(color);
             if (color == Color.BLANCO) {
-                Rey reyBlanco = new Rey(Color.BLANCO);
                 setPosicion(new Posicion(1, 'e'));
             }
             else{
-                Rey reNegro = new Rey(Color.NEGRO);
                 setPosicion(new Posicion(8, 'e'));
             }
-        }catch(IllegalArgumentException | OperationNotSupportedException e){
+            this.totalMovimientos=0;
+        }catch(IllegalArgumentException e){
             throw new OperationNotSupportedException(e.getMessage());
         }
     }
@@ -56,14 +54,18 @@ public class Rey {
 
     // Aqui he declarado que si el color es diferente de blanco o de negro saltara una excepcion.
     // Aunque creo que no hace falta porque en el enumerado solo hay esas dos opciones
-    private void setColor(Color color) {
+    private void setColor(Color color) throws OperationNotSupportedException {
         if(color == null)
             throw new NullPointerException("ERROR: El color no puede ser nulo.");
         /*
         if (color != Color.BLANCO || color != Color.NEGRO)
             throw new IllegalArgumentException("El color no puede ser diferente de Blanco o Negro"); */
-        this.color = color;
-    }
+        try {
+            this.color = color;
+        }catch(IllegalArgumentException e){
+            throw new OperationNotSupportedException(e.getMessage());
+        }
+        }
 
     public Posicion getPosicion() {
         return posicion;
@@ -157,9 +159,9 @@ public class Rey {
                         // Llamada al comprobar enroque si se puede o no.
                         comprobarEnroque();
                         setPosicion(new Posicion(posicion.getFila(), (char) (posicion.getColumna() + 2)));
-                    } catch (OperationNotSupportedException | IllegalArgumentException e) {
+                    } catch (OperationNotSupportedException e) {
                         /* Aquí el test me esta todo el rato dando el mismo error de mensaje en la excepción, no entiendo muy bien porqué */
-                        throw new OperationNotSupportedException(e.getMessage());
+                        System.out.println(e.getMessage());
                     }
                     break;
                 case ENROQUE_LARGO:
@@ -167,8 +169,8 @@ public class Rey {
                         // Llamada al comprobar enroque si se puede o no.
                         comprobarEnroque();
                         setPosicion(new Posicion(posicion.getFila(), (char) (posicion.getColumna() - 2)));
-                    } catch (OperationNotSupportedException | IllegalArgumentException e) {
-                        throw new OperationNotSupportedException(e.getMessage());
+                    } catch (OperationNotSupportedException e) {
+                        System.out.println(e.getMessage());
                     }
                     break;
             }
@@ -180,9 +182,9 @@ public class Rey {
 
     // Comprobación de que se puede hacer el enroque corto o largo:
     private void comprobarEnroque() throws OperationNotSupportedException{
-        if(this.reyBlanco.totalMovimientos!=0 || this.reyNegro.totalMovimientos!=0)
+        if(this.totalMovimientos!=0)
             throw new OperationNotSupportedException("ERROR: El rey ya se ha movido antes.");
-        else if(this.reyBlanco.totalMovimientos>0 || this.reyNegro.totalMovimientos>0)
+        else if (this.totalMovimientos>0)
             throw new OperationNotSupportedException("ERROR: El rey no está en su posición inicial.");
     }
 
