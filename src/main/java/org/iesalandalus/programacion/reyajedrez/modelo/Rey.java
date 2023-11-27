@@ -1,7 +1,5 @@
 package org.iesalandalus.programacion.reyajedrez.modelo;
 
-import jdk.dynalink.Operation;
-
 import javax.naming.OperationNotSupportedException;
 
 public class Rey {
@@ -179,7 +177,7 @@ public class Rey {
                         setPosicion(new Posicion(posicion.getFila(), (char) (posicion.getColumna() + 2)));
                     } catch (OperationNotSupportedException | IllegalArgumentException e) {
                         /* Aquí el test me esta todo el rato dando el mismo error de mensaje en la excepción, no entiendo muy bien porqué */
-                        System.out.println(e.getMessage());
+                        throw new OperationNotSupportedException(e.getMessage());
                     }
                     break;
                 case ENROQUE_LARGO:
@@ -188,13 +186,12 @@ public class Rey {
                         comprobarEnroque();
                         setPosicion(new Posicion(posicion.getFila(), (char) (posicion.getColumna() - 2)));
                     } catch (OperationNotSupportedException | IllegalArgumentException e) {
-                        System.out.println(e.getMessage());
+                        throw new OperationNotSupportedException(e.getMessage());
                     }
                     break;
             }
-        }catch(IllegalArgumentException | OperationNotSupportedException e){
-            System.out.println(e.getMessage());
-            throw new OperationNotSupportedException();
+        }catch(IllegalArgumentException e){
+            throw new OperationNotSupportedException(e.getMessage());
         }
 
     }
@@ -216,7 +213,7 @@ public class Rey {
 
     @Override
     public String toString() {
-
-        return "color="+color+", posicion=(fila="+(posicion.getFila())+", columna="+posicion.getColumna()+")";
+    Rey reyBlanco = new Rey();
+        return "color="+reyBlanco.getColor()+", posicion="+reyBlanco.getPosicion();
     }
 }
