@@ -1,5 +1,7 @@
 package org.iesalandalus.programacion.reyajedrez.modelo;
 
+import jdk.dynalink.Operation;
+
 import javax.naming.OperationNotSupportedException;
 
 public class Rey {
@@ -103,7 +105,7 @@ public class Rey {
                         setPosicion(new Posicion(posicion.getFila() + 1, posicion.getColumna()));
                         totalMovimientos++;
                     } catch (IllegalArgumentException | OperationNotSupportedException e) {
-                        System.out.println(e.getMessage());
+                        throw new OperationNotSupportedException(e.getMessage());
                     }
                     break;
                 case SUR:
@@ -112,7 +114,7 @@ public class Rey {
                         setPosicion(new Posicion(posicion.getFila() - 1, posicion.getColumna()));
                         totalMovimientos++;
                     } catch (IllegalArgumentException | OperationNotSupportedException e) {
-                        System.out.println(e.getMessage());
+                        throw new OperationNotSupportedException(e.getMessage());
                     }
                     break;
                 case ESTE:
@@ -121,7 +123,7 @@ public class Rey {
                         setPosicion(new Posicion(posicion.getFila(), (char) (posicion.getColumna() + 1)));
                         totalMovimientos++;
                     } catch (IllegalArgumentException | OperationNotSupportedException e) {
-                        System.out.println(e.getMessage());
+                        throw new OperationNotSupportedException(e.getMessage());
                     }
                     break;
                 case OESTE:
@@ -130,7 +132,7 @@ public class Rey {
                         setPosicion(new Posicion(posicion.getFila(), (char) (posicion.getColumna() - 1)));
                         totalMovimientos++;
                     } catch (IllegalArgumentException | OperationNotSupportedException e) {
-                        System.out.println(e.getMessage());
+                        throw new OperationNotSupportedException(e.getMessage());
                     }
                     break;
                 case NORESTE:
@@ -139,7 +141,7 @@ public class Rey {
                         setPosicion(new Posicion(posicion.getFila() + 1, (char) (posicion.getColumna() + 1)));
                         totalMovimientos++;
                     } catch (IllegalArgumentException | OperationNotSupportedException e) {
-                        System.out.println(e.getMessage());
+                        throw new OperationNotSupportedException(e.getMessage());
                     }
                     break;
                 case NOROESTE:
@@ -148,7 +150,7 @@ public class Rey {
                         setPosicion(new Posicion(posicion.getFila() + 1, (char) (posicion.getColumna() - 1)));
                         totalMovimientos++;
                     } catch (IllegalArgumentException | OperationNotSupportedException e) {
-                        System.out.println(e.getMessage());
+                        throw new OperationNotSupportedException(e.getMessage());
                     }
                     break;
                 case SURESTE:
@@ -157,7 +159,7 @@ public class Rey {
                         setPosicion(new Posicion(posicion.getFila() - 1, (char) (posicion.getColumna() + 1)));
                         totalMovimientos++;
                     } catch (IllegalArgumentException | OperationNotSupportedException e) {
-                        System.out.println(e.getMessage());
+                        throw new OperationNotSupportedException(e.getMessage());
                     }
                     break;
                 case SUROESTE:
@@ -166,7 +168,7 @@ public class Rey {
                         setPosicion(new Posicion(posicion.getFila() - 1, (char) (posicion.getColumna() - 1)));
                         totalMovimientos++;
                     } catch (IllegalArgumentException | OperationNotSupportedException e) {
-                        System.out.println(e.getMessage());
+                        throw new OperationNotSupportedException(e.getMessage());
                     }
                     break;
                 case ENROQUE_CORTO:
@@ -190,7 +192,7 @@ public class Rey {
                     }
                     break;
             }
-        }catch(IllegalArgumentException e){
+        }catch(IllegalArgumentException | OperationNotSupportedException e){
             System.out.println(e.getMessage());
             throw new OperationNotSupportedException();
         }
