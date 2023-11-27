@@ -16,8 +16,6 @@ public class MainApp {
         // No tengo ni idea de porque tengo que poner static aqui, pero he estado investigando y poniendolo no me da errores...
 
 
-            reyBlanco = new Rey(Color.BLANCO);
-            reyNegro = new Rey(Color.NEGRO);
 
 
 
@@ -40,13 +38,10 @@ public class MainApp {
         private static void crearReyDefecto () {
         boolean creadoCorrectamente = false;
         do {
-            try {
-                reyBlanco = new Rey();
+                reyBlanco = new Rey(Color.BLANCO);
+                reyNegro = new Rey(Color.NEGRO);
                 mostrarRey();
                 creadoCorrectamente = true;
-            } catch (OperationNotSupportedException | IllegalArgumentException e) {
-                System.out.println(e.getMessage());
-            }
         } while (!creadoCorrectamente);
 
     }
@@ -55,12 +50,10 @@ public class MainApp {
         boolean creadoCorrectamente = false;
         // Aqui me daba un error, tuve que ir a consola y modificar el método de la opcion de menu y quitar el parametro que tenia.
         do {
-            try {
-                Rey rey = new Rey(Consola.elegirOpcion());
+                reyBlanco = new Rey(Color.BLANCO);
+                reyNegro = new Rey(Color.NEGRO);
                 creadoCorrectamente = true;
-            } catch (OperationNotSupportedException | IllegalArgumentException e) {
-                System.out.println(e.getMessage());
-            }
+
         } while (!creadoCorrectamente);
 
     }
@@ -69,26 +62,36 @@ public class MainApp {
         boolean movimientoCorrecto = false;
         // Aquí he creado un atributo de tipo Color para obtener el valor de Consola.elegirOpcion(); (No se ni si funciona)
         do {
-            try {
+
+                reyBlanco = new Rey(Color.BLANCO);
+                reyNegro = new Rey(Color.NEGRO);
                 Color opcion = Consola.elegirOpcion();
+
                 if (opcion == Color.BLANCO) {
-                    reyBlanco.mover(Consola.elegirDireccion());
-                    // Hacemos un sout de rey para que se muestre de nuevo la posicion y demás.
-                    mostrarRey();
-                    movimientoCorrecto = true;
+                    try {
+                        reyBlanco.mover(Consola.elegirDireccion());
+                        // Hacemos un sout de rey para que se muestre de nuevo la posicion y demás.
+                        mostrarRey();
+                        movimientoCorrecto = true;
+                    }catch(OperationNotSupportedException e){
+                        System.out.println(e.getMessage());
+                    }
                 } else if (opcion == Color.NEGRO) {
-                    reyNegro.mover(Consola.elegirDireccion());
-                    // Hacemos un sout de rey para que se muestre de nuevo la posicion y demás.
-                    mostrarRey();
-                    movimientoCorrecto = true;
+                    try {
+                        reyNegro.mover(Consola.elegirDireccion());
+                        // Hacemos un sout de rey para que se muestre de nuevo la posicion y demás.
+                        mostrarRey();
+                        movimientoCorrecto = true;
+                    }catch(OperationNotSupportedException e){
+                        System.out.println(e.getMessage());
+                    }
                 }
-            } catch (OperationNotSupportedException e) {
-                System.out.println(e.getMessage());
-            }
         } while (!movimientoCorrecto);
     }
 
         private static void mostrarRey () {
+            reyBlanco = new Rey(Color.BLANCO);
+            reyNegro = new Rey(Color.NEGRO);
         // Como quiere que indiquemos que si no esta creado aun nos avise, lanzamos excepcion.
         if (reyBlanco == null)
             throw new NullPointerException("El rey no esta creado");
