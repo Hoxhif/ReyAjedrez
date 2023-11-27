@@ -99,82 +99,74 @@ public class Rey {
             switch (direccion) {
                 case NORTE:
                     try {
-                        if (posicion.getFila()>8 | posicion.getFila()<1)
-                            throw new IllegalArgumentException("ERROR: Movimiento no válido (se sale del tablero).");
+                        moverIncorrectamente();
                         setPosicion(new Posicion(posicion.getFila() + 1, posicion.getColumna()));
                         totalMovimientos++;
-                    } catch (IllegalArgumentException e) {
-                        throw new OperationNotSupportedException(e.getMessage());
+                    } catch (IllegalArgumentException | OperationNotSupportedException e) {
+                        System.out.println(e.getMessage());
                     }
                     break;
                 case SUR:
                     try {
-                        if (posicion.getFila()>8 | posicion.getFila()<1)
-                            throw new IllegalArgumentException("ERROR: Movimiento no válido (se sale del tablero).");
+                        moverIncorrectamente();
                         setPosicion(new Posicion(posicion.getFila() - 1, posicion.getColumna()));
                         totalMovimientos++;
-                    } catch (IllegalArgumentException e) {
-                        throw new OperationNotSupportedException(e.getMessage());
+                    } catch (IllegalArgumentException | OperationNotSupportedException e) {
+                        System.out.println(e.getMessage());
                     }
                     break;
                 case ESTE:
                     try {
-                        if (posicion.getColumna()>'h' | posicion.getColumna()<'a')
-                            throw new IllegalArgumentException("ERROR: Movimiento no válido (se sale del tablero).");
+                        moverIncorrectamente();
                         setPosicion(new Posicion(posicion.getFila(), (char) (posicion.getColumna() + 1)));
                         totalMovimientos++;
-                    } catch (IllegalArgumentException e) {
-                        throw new OperationNotSupportedException(e.getMessage());
+                    } catch (IllegalArgumentException | OperationNotSupportedException e) {
+                        System.out.println(e.getMessage());
                     }
                     break;
                 case OESTE:
                     try {
-                        if (posicion.getColumna()>'h' | posicion.getColumna()<'a')
-                            throw new IllegalArgumentException("ERROR: Movimiento no válido (se sale del tablero).");
+                        moverIncorrectamente();
                         setPosicion(new Posicion(posicion.getFila(), (char) (posicion.getColumna() - 1)));
                         totalMovimientos++;
-                    } catch (IllegalArgumentException e) {
-                        throw new OperationNotSupportedException(e.getMessage());
+                    } catch (IllegalArgumentException | OperationNotSupportedException e) {
+                        System.out.println(e.getMessage());
                     }
                     break;
                 case NORESTE:
                     try {
-                        if ((posicion.getFila()>8 | posicion.getFila()<1) | (posicion.getColumna()>'h' | posicion.getColumna()<'a'))
-                            throw new IllegalArgumentException("ERROR: Movimiento no válido (se sale del tablero).");
+                        moverIncorrectamente();
                         setPosicion(new Posicion(posicion.getFila() + 1, (char) (posicion.getColumna() + 1)));
                         totalMovimientos++;
-                    } catch (IllegalArgumentException e) {
-                        throw new OperationNotSupportedException(e.getMessage());
+                    } catch (IllegalArgumentException | OperationNotSupportedException e) {
+                        System.out.println(e.getMessage());
                     }
                     break;
                 case NOROESTE:
                     try {
-                        if ((posicion.getFila()>8 | posicion.getFila()<1) | (posicion.getColumna()>'h' | posicion.getColumna()<'a'))
-                            throw new IllegalArgumentException("ERROR: Movimiento no válido (se sale del tablero).");
+                        moverIncorrectamente();
                         setPosicion(new Posicion(posicion.getFila() + 1, (char) (posicion.getColumna() - 1)));
                         totalMovimientos++;
-                    } catch (IllegalArgumentException e) {
-                        throw new OperationNotSupportedException(e.getMessage());
+                    } catch (IllegalArgumentException | OperationNotSupportedException e) {
+                        System.out.println(e.getMessage());
                     }
                     break;
                 case SURESTE:
                     try {
-                        if ((posicion.getFila()>8 | posicion.getFila()<1) | (posicion.getColumna()>'h' | posicion.getColumna()<'a'))
-                            throw new IllegalArgumentException("ERROR: Movimiento no válido (se sale del tablero).");
+                        moverIncorrectamente();
                         setPosicion(new Posicion(posicion.getFila() - 1, (char) (posicion.getColumna() + 1)));
                         totalMovimientos++;
-                    } catch (IllegalArgumentException e) {
-                        throw new OperationNotSupportedException(e.getMessage());
+                    } catch (IllegalArgumentException | OperationNotSupportedException e) {
+                        System.out.println(e.getMessage());
                     }
                     break;
                 case SUROESTE:
                     try {
-                        if ((posicion.getFila()>8 | posicion.getFila()<1) | (posicion.getColumna()>'h' | posicion.getColumna()<'a'))
-                            throw new IllegalArgumentException("ERROR: Movimiento no válido (se sale del tablero).");
+                        moverIncorrectamente();
                         setPosicion(new Posicion(posicion.getFila() - 1, (char) (posicion.getColumna() - 1)));
                         totalMovimientos++;
-                    } catch (IllegalArgumentException e) {
-                        throw new OperationNotSupportedException(e.getMessage());
+                    } catch (IllegalArgumentException | OperationNotSupportedException e) {
+                        System.out.println(e.getMessage());
                     }
                     break;
                 case ENROQUE_CORTO:
@@ -198,7 +190,7 @@ public class Rey {
                     }
                     break;
             }
-        }catch(IllegalArgumentException | OperationNotSupportedException e){
+        }catch(IllegalArgumentException e){
             System.out.println(e.getMessage());
             throw new OperationNotSupportedException();
         }
@@ -211,6 +203,13 @@ public class Rey {
             throw new OperationNotSupportedException("ERROR: El rey ya se ha movido antes.");
         else if (this.totalMovimientos>0)
             throw new OperationNotSupportedException("ERROR: El rey no está en su posición inicial.");
+    }
+
+    private void moverIncorrectamente() throws OperationNotSupportedException{
+        if (this.posicion.getFila()>8 | this.posicion.getFila()<1)
+            throw new OperationNotSupportedException("ERROR: Movimiento no válido (se sale del tablero).");
+        else if(this.posicion.getColumna()>'h' | this.posicion.getColumna()<'a')
+            throw new OperationNotSupportedException("ERROR: Movimiento no válido (se sale del tablero).");
     }
 
     @Override
